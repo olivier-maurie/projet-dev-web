@@ -67,7 +67,7 @@
 			<div class="col-md-4 col-md-offset-4">
 				<form method="POST" action="" class="index">
 					<h4>Connexion</h4>
-					<input type="text" class="form-control col-md-4" name="pseudo" placeholder="Pseudo" />
+					<input type="text" class="form-control" name="pseudo" placeholder="Pseudo" />
 					<input type="password" class="form-control" name="password" placeholder="Mot de passe"/>
 					<input type="submit" class="btn btn-default" name="envoyer"/>
 				</form>

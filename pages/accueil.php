@@ -28,33 +28,46 @@ while ($resultat2 = $sql->fetch())
 {
 ?>
 <div class="row">
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-lg-6 col- col-lg-offset-3">
 		<div class="row">
-			<div class="col-md-4">
-				<h3><?php echo $resultat2['dom']; ?> <?php echo $resultat2['butdom']; ?> - <?php echo $resultat2['butext']; ?> <?php echo $resultat2['ext'];?> </h3>
-			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					<h3><?php echo $resultat2['dom']; ?> <?php echo $resultat2['butdom']; ?> - <?php echo $resultat2['butext']; ?> <?php echo $resultat2['ext'];?> </h3>
+				</div>
 			
 			<form method="POST" action="" class="parie">
-				<div class="col-md-3">
-				<?php echo substr($resultat2['dom'], 0, 3); ?>
-				<input type="radio" name="cote"><?php echo $resultat2["cotedom"];?>
-
-				Nul
-				<input type="radio" name="cote" checked><?php echo $resultat2["cotenul"];?>
-
-				<?php echo substr($resultat2['ext'], 0, 3); ?>
-				<input type="radio" name="cote"><?php echo $resultat2["coteext"];?>
-
+				<div class="col-lg-6">
+				<ul>
+					<li>
+						<span><?php echo substr($resultat2['dom'], 0, 3); ?></span>
+						<span><input type="radio" name="cote"/></span>
+						<span><?php echo $resultat2["cotedom"];?></span>
+					</li>
+					<li>
+						<span>Nul</span>
+						<span><input type="radio" name="cote" checked/></span>
+						<span><?php echo $resultat2["cotenul"];?></span>
+					</li>
+					<li>
+						<span><?php echo substr($resultat2['ext'], 0, 3); ?></span>
+						<span><input type="radio" name="cote"/></span>
+						<span><?php echo $resultat2["coteext"];?></span>
+					</li>
+				</ul>
 				</div>
-
-				<div class="col-md-4">
+			</div>
+			<div class="row">
+			
+				<div class="col-lg-6">
 					<input type="number" class="form-control" min="1" max="50" name="sommepari" placeholder="(uniquement entre 1 et 50)">
 				</div>
-				<div class="col-md-1">
+				<div class="col-lg-6">
 					<input type="submit" class="btn btn-default" name="envoyer" value="PARIEZ !">
 				</div>
 				<input type="number" name="id_paris" class="hidden-parie" value="<?php echo $resultat2["id"]; ?>"/>
 			</form>
+			
+			</div>
 		</div>
 	</div>
 </div>
@@ -98,4 +111,10 @@ if(!empty($_POST["envoyer"]))
 	}
 }
 ?>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
+</html>

@@ -1,5 +1,5 @@
 header { background : #0C5224; color : #fff;}
 
 footer { bottom : 0; position : absolute; }
-
+ul,li { padding : 0; margin : 0; list-style : none;}
 .hidden-parie { display : none; }
