@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Projet foot</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="css/design.css" rel="stylesheet"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -59,22 +59,22 @@
 	?>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-4 col-md-offset-4 ">
+			<div class="col-md-4 col-md-offset-4">
 				<form method="POST" action="" class="index">
 					<h4>Connexion</h4>
 					<input type="text" class="form-control col-md-4" name="pseudo" placeholder="Pseudo" />
 					<input type="password" class="form-control" name="password" placeholder="Mot de passe"/>
-					<input type="submit" name="envoyer"/>
+					<input type="submit" class="btn btn-default" name="envoyer"/>
 				</form>
 
 			<form method="POST" action="" class="index">
-			<h4>Inscription</h4>
+				<h4>Inscription</h4>
 				<input type="text" class="form-control" name="pseudoin" placeholder="Pseudo"/>
 				<input type="password" class="form-control" name="passwordin" placeholder="Mot de passe"/>
 				<input type="password" class="form-control"name="repassword" placeholder="Confirmer le mot de passe"/>
 				<input type="text" class="form-control"name="nom" placeholder="Nom"/>
 				<input type="text" class="form-control"name="prenom" placeholder="Prénom"/>
-				<input type="submit" name="soumettre"/>
+				<input type="submit" class="btn btn-default" name="soumettre"/>
 			</form>
 			</div>
 		</div>
