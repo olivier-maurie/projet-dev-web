@@ -20,7 +20,7 @@ class User {
 	private $_admin;
 	private $_points;
 	
-	public function __construct($p_id, $p_nom, $p_prenom, $p_password, $p_pseudo)
+	public function __construct($p_id, $p_nom, $p_prenom, $p_password, $p_pseudo, $p_point)
 	{
 		$this->_id=$p_id;
 		$this->_admin=0;
@@ -28,7 +28,7 @@ class User {
 		$this->_prenom=$p_prenom;
 		$this->_password=$p_password;
 		$this->_pseudo=$p_pseudo;
-		$this->_points=100;
+		$this->_points=$p_point;
 	}
 	
 	public function update()
@@ -55,21 +55,31 @@ class User {
 	
 	public function parier ($sommepari)
 	{
-		ajouteraupari(
 		$this->_points=$this->_points-$sommepari;
 		$this->update();
 	}
 	
 	public function ajouteraupari($id, $sommepari)
 	{
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=rpgfoot', 'root', '');
+			$db->query('SET NAMES utf8');
+		}
+		catch (Exception $e)
+		{
+			die('Erreur : ' . $e->getMessage());
+		}
 		$cote = $id;
 		$id_user = $this->_id;
-		$sql = $db->prepare("SELECT COUNT(*) AS nb, id, dom, ext, cotedom, cotenul, coteext FROM resultat WHERE id=".$id."");
-		$liste = $sql->execute();
-		$var = $liste->fetch();
+		$sql = "SELECT COUNT(*) AS nb, id, dom, ext, cotedom, cotenul, coteext FROM resultat WHERE id=".$id."";
+		$sql2 = $db->prepare($sql);
+		$liste = $sql2->execute();
+		$var = $sql2->fetch();
 		if($var["nb"]==1)
 		{
-			$sql2 = $db->prepare("INSERT INTO pari VALUES('".$var["dom"]."','".$var["ext"]."', '".$var["cotedom"]."', '".$var["cotenul"]."', '".$var["coteext"]."', '".$sommeparie."', '".$id_user."')"); 
+			$sql3 = $db->prepare("INSERT INTO pari (dom, ext, cotedom, cotenul, coteext, sommeparie, id_user) VALUES('".$var["dom"]."','".$var["ext"]."', '".$var["cotedom"]."', '".$var["cotenul"]."', '".$var["coteext"]."', '".$sommepari."', '".$id_user."')"); 
+			$sql3->execute();
 		}
 		
 	}

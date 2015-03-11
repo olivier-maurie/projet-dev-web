@@ -50,15 +50,16 @@
 				$prenom = $_POST["prenom"];
 				$password = $_POST["passwordin"];
 				$pseudo = $_POST["pseudoin"];
-				$sql = $db->prepare('INSERT INTO user(nom, prenom, password, pseudo) VALUES ("'.$nom.'", "'.$prenom.'", "'.$password.'", "'.$pseudo.'")');
+				$sql = $db->prepare('INSERT INTO user(nom, prenom, password, pseudo, points) VALUES ("'.$nom.'", "'.$prenom.'", "'.$password.'", "'.$pseudo.'", 100)');
 				$sql->execute();
-				$sql2 = $db->prepare('SELECT id, nom, prenom, password, pseudo FROM user WHERE pseudo ="'.$_POST["pseudoin"].'" AND password ="'.$_POST["passwordin"].'"');
+				$sql2 = $db->prepare('SELECT id, nom, prenom, password, pseudo, points FROM user WHERE pseudo ="'.$_POST["pseudoin"].'" AND password ="'.$_POST["passwordin"].'"');
 				$sql2->execute();
 				$columns2=$sql2->fetch();
-				$useract = new user($columns2["id"], $columns2["nom"], $columns2["prenom"], $columns2["password"], $columns2["pseudo"]);
+				$useract = new user($columns2["id"], $columns2["nom"], $columns2["prenom"], $columns2["password"], $columns2["pseudo"], $columns2["points"]);
 				session_start();
 				$_SESSION["user_id"] = $columns2["id"];
 				$_SESSION["user"] = $useract;
+				header('location:pages/accueil.php');
 			}
 		}
 	?>

@@ -1,4 +1,5 @@
-<?php include('../includes/connexion_bdd.php'); ?>
+<?php include('../includes/connexion_bdd.php');
+require_once "../includes/autoload.inc.php"; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -20,6 +21,7 @@
 	<?php include("../includes/header.php"); ?>
 
 <!-- LAYOUT -->
+
 <?php
 session_start();
 $sql = $db->prepare("SELECT id, dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat");
@@ -74,6 +76,7 @@ while ($resultat2 = $sql->fetch())
 
 <?php
 }
+
 ?>
 
 
@@ -82,8 +85,9 @@ while ($resultat2 = $sql->fetch())
 <?php include("../includes/footer.php"); ?>
 <?php
 if(!empty($_POST["envoyer"]))
+{
 	{
-	$id_pari = $_POST["id_pari"];
+	$id_pari = $_POST["id_paris"];
 	$user = $_SESSION["user"];
 	$cote = $_POST['cote'];
 	$somme = $_POST['sommepari'];
@@ -93,7 +97,9 @@ if(!empty($_POST["envoyer"]))
 		{
 			if($user->getPoint()-$somme >= 0)
 			{
+				$user->ajouteraupari($id_pari, $somme);
 				$user->parier($somme);
+				var_dump($_SESSION["user"]);
 			}
 			else
 			{
@@ -110,6 +116,8 @@ if(!empty($_POST["envoyer"]))
 		echo "Vous devez entrer un nombre";
 	}
 }
+}
+
 ?>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
