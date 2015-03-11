@@ -1,4 +1,5 @@
-<?php include("../includes/connexion_bdd.php");?>
+<?php include("../includes/connexion_bdd.php");
+require_once "../includes/autoload.inc.php";?>
 <html>
 <head>
 	<title>En Direct du Stade</title>
@@ -12,6 +13,7 @@
 <!-- LAYOUT -->
 <div class="layout">
 	<?php 
+		session_start();
 		$sql = $db->prepare("SELECT dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat");
 		$sql->execute();
 		
@@ -46,6 +48,36 @@
 
 <!-- FOOTER -->
 <?php include("../includes/footer.php"); ?>
+<?php 
+if(!empty($_POST["envoyer"]))
+{
+	$user = $_SESSION["user"];
+	$cote = $_POST['cote'];
+	$somme = $_POST['sommepari'];
+	if ($somme > 0)
+	{
+		if ($somme <51)
+		{
+			if($user->getPoint()-$somme >= 0)
+			{
+				$user->parier($somme);
+			}
+			else
+			{
+				echo "Vous n'avez pas assez de points pour parier autant, attendez la semaine prochaine.";
+			}
+		}
+		else
+		{
+			echo "Vous ne pouvez pas parier plus de 50 points";
+		}
+	}
+	else
+	{
+		echo "Vous devez entrer un nombre";
+	}
+}
+?>
 
 </body>
 </html>
