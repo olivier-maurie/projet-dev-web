@@ -18,7 +18,6 @@
 <body>
 
 	<?php
-		
 		require_once '/autoload.inc.php';
 		if (!empty($_POST["envoyer"]))
 		{
@@ -73,15 +72,15 @@
 					<input type="submit" class="btn btn-default" name="envoyer"/>
 				</form>
 
-			<form method="POST" action="" class="index">
-				<h4>Inscription</h4>
-				<input type="text" class="form-control" name="pseudoin" placeholder="Pseudo"/>
-				<input type="password" class="form-control" name="passwordin" placeholder="Mot de passe"/>
-				<input type="password" class="form-control"name="repassword" placeholder="Confirmer le mot de passe"/>
-				<input type="text" class="form-control"name="nom" placeholder="Nom"/>
-				<input type="text" class="form-control"name="prenom" placeholder="Prénom"/>
-				<input type="submit" class="btn btn-default" name="soumettre"/>
-			</form>
+				<form method="POST" action="" class="index">
+					<h4>Inscription</h4>
+					<input type="text" class="form-control" name="pseudoin" placeholder="Pseudo"/>
+					<input type="password" class="form-control" name="passwordin" placeholder="Mot de passe"/>
+					<input type="password" class="form-control"name="repassword" placeholder="Confirmer le mot de passe"/>
+					<input type="text" class="form-control"name="nom" placeholder="Nom"/>
+					<input type="text" class="form-control"name="prenom" placeholder="Prénom"/>
+					<input type="submit" class="btn btn-default" name="soumettre"/>
+				</form>
 			</div>
 		</div>
 	</div>

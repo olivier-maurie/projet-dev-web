@@ -1,1 +1,5 @@
 header { background : #0C5224; color : #fff;}
+
+footer { bottom : 0; position : absolute; }
+
+.hidden-parie { display : none; }
