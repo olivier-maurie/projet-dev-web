@@ -1,4 +1,5 @@
-<?php include('../includes/connexion_bdd.php'); ?>
+<?php include('../includes/connexion_bdd.php');
+require_once "../includes/autoload.inc.php"; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,7 +30,7 @@ while ($resultat2 = $sql->fetch())
 {
 ?>
 <div class="row">
-	<div class="col-md-6 col-md-offset-3">
+	<div class="col-md-8 col-md-offset-2">
 		<div class="row">
 			<div class="col-md-4">
 				<h3><?php echo $resultat2['dom']; ?> <?php echo $resultat2['butdom']; ?> - <?php echo $resultat2['butext']; ?> <?php echo $resultat2['ext'];?> </h3>
@@ -37,14 +38,14 @@ while ($resultat2 = $sql->fetch())
 			
 			<form method="POST" action="" class="parie">
 				<div class="col-md-3">
-					<?php echo substr($resultat2['dom'], 0, 3); ?>
-					<input type="radio" name="cote"><?php echo $resultat2["cotedom"];?>
+				<?php echo substr($resultat2['dom'], 0, 3); ?>
+				<input type="radio" name="cote"><?php echo $resultat2["cotedom"];?>
 
-					Nul
-					<input type="radio" name="cote" checked><?php echo $resultat2["cotenul"];?>
+				Nul
+				<input type="radio" name="cote" checked><?php echo $resultat2["cotenul"];?>
 
-					<?php echo substr($resultat2['ext'], 0, 3); ?>
-					<input type="radio" name="cote"><?php echo $resultat2["coteext"];?>
+				<?php echo substr($resultat2['ext'], 0, 3); ?>
+				<input type="radio" name="cote"><?php echo $resultat2["coteext"];?>
 
 				</div>
 
@@ -60,9 +61,9 @@ while ($resultat2 = $sql->fetch())
 	</div>
 </div>
 
-<!--input type="number" name=""/-->
 <?php
 }
+
 ?>
 
 
@@ -72,31 +73,35 @@ while ($resultat2 = $sql->fetch())
 <?php
 if(!empty($_POST["envoyer"]))
 {
-$id_pari = $_POST["id_pari"];
-$user = $_SESSION["user"];
-$cote = $_POST['id_paris'];
-$somme = $_POST['sommepari'];
-if ($somme > 0)
-{
-if ($somme <51)
-{
-if($user->getPoint()-$somme >= 0)
-{
-$user->parier($somme);
-}
-else
-{
-echo "Vous n'avez pas assez de points pour parier autant, attendez la semaine prochaine.";
-}
-}
-else
-{
-echo "Vous ne pouvez pas parier plus de 50 points";
-}
-}
-else
-{
-echo "Vous devez entrer un nombre";
+	{
+	$id_pari = $_POST["id_paris"];
+	$user = $_SESSION["user"];
+	$cote = $_POST['cote'];
+	$somme = $_POST['sommepari'];
+	if ($somme > 0)
+	{
+		if ($somme <51)
+		{
+			if($user->getPoint()-$somme >= 0)
+			{
+				$user->ajouteraupari($id_pari, $somme);
+				$user->parier($somme);
+				var_dump($_SESSION["user"]);
+			}
+			else
+			{
+				echo "Vous n'avez pas assez de points pour parier autant, attendez la semaine prochaine.";
+			}
+		}
+		else
+		{
+			echo "Vous ne pouvez pas parier plus de 50 points";
+		}
+	}
+	else
+	{
+		echo "Vous devez entrer un nombre";
+	}
 }
 }
 
