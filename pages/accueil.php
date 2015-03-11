@@ -14,7 +14,7 @@ require_once "../includes/autoload.inc.php";?>
 <div class="layout">
 	<?php 
 		session_start();
-		$sql = $db->prepare("SELECT dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat");
+		$sql = $db->prepare("SELECT id, dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat");
 		$sql->execute();
 		
 		while ($resultat2 = $sql->fetch())

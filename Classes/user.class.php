@@ -59,6 +59,24 @@ class User {
 		$this->update();
 	}
 	
+	public function ajouteraupari($id, $sommepari)
+	{
+		$cote = $id;
+		$id_user = $this->_id;
+		$sql = $db->prepare("SELECT COUNT(*) AS nb, id, dom, ext, cotedom, cotenul, coteext FROM resultat WHERE id=".$id."");
+		$liste = $sql->execute();
+		$var = $liste->fetch();
+		if($var["nb"]==1)
+		{
+			$sql2 = $db->prepare("INSERT INTO pari VALUES('".$var["dom"]."','".$var["ext"]."', '".$var["cotedom"]."', '".$var["cotenul"]."', '".$var["coteext"]."', '".$sommeparie."', '".$id_user."')"); 
+		}
+		
+	}
+		
+			
+		
+		
+	
 	public function getPoint()
 	{
 		return $this->_points;
