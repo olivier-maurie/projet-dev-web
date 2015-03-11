@@ -53,9 +53,9 @@ class User {
 		$this->update();
 	}
 	
-	public function parier ($sommepari)
+	public function parier ($sommepari, $id)
 	{
-		ajouteraupari(
+		ajouteraupari($id, $sommepari);
 		$this->_points=$this->_points-$sommepari;
 		$this->update();
 	}

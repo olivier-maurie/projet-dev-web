@@ -20,17 +20,7 @@
 	<?php include("../includes/header.php"); ?>
 
 <!-- LAYOUT -->
-<div class="layout">
-	<?php 
-		session_start();
-		$sql = $db->prepare("SELECT id, dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat");
-		$sql->execute();
-		
-		while ($resultat2 = $sql->fetch())
-		{
-			echo "	<div class=\"match\">
-					<h3>".$resultat2['dom'].' '.$resultat2['butdom'].' - '.$resultat2['butext'].' '.$resultat2['ext']. "</h3>" ;
-		?>
+
 <?php
 session_start();
 $sql = $db->prepare("SELECT id, dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat");
@@ -84,7 +74,7 @@ if(!empty($_POST["envoyer"]))
 {
 $id_pari = $_POST["id_pari"];
 $user = $_SESSION["user"];
-$cote = $_POST['cote'];
+$cote = $_POST['id_paris'];
 $somme = $_POST['sommepari'];
 if ($somme > 0)
 {
@@ -109,5 +99,6 @@ else
 echo "Vous devez entrer un nombre";
 }
 }
+
 ?>
 </body>
