@@ -1,4 +1,4 @@
-<?php include("connexion_bdd.php");?>
+<?php include("../includes/connexion_bdd.php");?>
 <html>
 <head>
 	<title>En Direct du Stade</title>
@@ -7,7 +7,7 @@
 </head>
 <body>
 <!-- HEADER -->
-<?php include("header.php"); ?>
+<?php include("../includes/header.php"); ?>
 
 <!-- LAYOUT -->
 <div class="layout">
@@ -45,7 +45,7 @@
 </div>
 
 <!-- FOOTER -->
-<?php include("footer.php"); ?>
+<?php include("../includes/footer.php"); ?>
 
 </body>
 </html>
