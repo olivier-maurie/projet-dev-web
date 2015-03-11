@@ -22,7 +22,7 @@
 		require_once '/autoload.inc.php';
 		if (!empty($_POST["envoyer"]))
 		{
-			$sql = 'SELECT COUNT(*) AS nb, id, pseudo, password FROM user WHERE pseudo ="'.$_POST["pseudo"].'" AND password ="'.$_POST["password"].'"';
+			$sql = 'SELECT COUNT(*) AS nb, id,nom, prenom, pseudo, password FROM user WHERE pseudo ="'.$_POST["pseudo"].'" AND password ="'.$_POST["password"].'"';
 			echo $sql;
 			$sql2 = $db->prepare($sql);
 			$sql2->execute();
@@ -33,8 +33,9 @@
 				$sql3 = $db->prepare('SELECT id, nom, prenom, password, pseudo FROM user WHERE id='.$columns["id"].'');
 				$sql3->execute();
 				$useract = new user($columns["id"], $columns["nom"], $columns["prenom"], $columns["password"], $columns["pseudo"]);
+				session_start();
 				$_SESSION["user"] = $useract;
-				header('location:pages/acceuil.php');
+				header('location:pages/accueil.php');
 			}
 			else 
 			{
@@ -56,6 +57,7 @@
 				$sql2->execute();
 				$columns2=$sql2->fetch();
 				$useract = new user($columns2["id"], $columns2["nom"], $columns2["prenom"], $columns2["password"], $columns2["pseudo"]);
+				session_start();
 				$_SESSION["user_id"] = $columns2["id"];
 				$_SESSION["user"] = $useract;
 			}
