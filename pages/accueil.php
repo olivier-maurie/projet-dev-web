@@ -33,43 +33,44 @@ while ($resultat2 = $sql->fetch())
 	<div class="col-lg-6 col- col-lg-offset-3">
 		<div class="row">
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-8">
 					<h3><?php echo $resultat2['dom']; ?> <?php echo $resultat2['butdom']; ?> - <?php echo $resultat2['butext']; ?> <?php echo $resultat2['ext'];?> </h3>
 				</div>
 			
 			<form method="POST" action="" class="parie">
-				<div class="col-lg-6">
+				<div class="col-lg-4">
 				<ul>
 					<li>
-						<span><?php echo substr($resultat2['dom'], 0, 3); ?></span>
+						<span class="equipe"><?php echo substr($resultat2['dom'], 0, 3); ?></span>
 						<span><input type="radio" name="cote"/></span>
 						<span><?php echo $resultat2["cotedom"];?></span>
 					</li>
 					<li>
-						<span>Nul</span>
+						<span class="equipe">Nul</span>
 						<span><input type="radio" name="cote" checked/></span>
 						<span><?php echo $resultat2["cotenul"];?></span>
 					</li>
 					<li>
-						<span><?php echo substr($resultat2['ext'], 0, 3); ?></span>
+						<span class="equipe"><?php echo substr($resultat2['ext'], 0, 3); ?></span>
 						<span><input type="radio" name="cote"/></span>
 						<span><?php echo $resultat2["coteext"];?></span>
 					</li>
 				</ul>
 				</div>
 			</div>
-			<div class="row">
-			
-				<div class="col-lg-6">
-					<input type="number" class="form-control" min="1" max="50" name="sommepari" placeholder="(uniquement entre 1 et 50)">
+				<div class="row">
+				
+					<div class="col-lg-8">
+						<input type="number" class="form-control" min="1" max="50" name="sommepari" placeholder="(uniquement entre 1 et 50)">
+					</div>
+					<div class="col-lg-4">
+						<input type="submit" class="btn btn-default" name="envoyer" value="PARIEZ !">
+					</div>
+					<input type="number" name="id_paris" class="hidden-parie" value="<?php echo $resultat2["id"]; ?>"/>
 				</div>
-				<div class="col-lg-6">
-					<input type="submit" class="btn btn-default" name="envoyer" value="PARIEZ !">
-				</div>
-				<input type="number" name="id_paris" class="hidden-parie" value="<?php echo $resultat2["id"]; ?>"/>
 			</form>
 			
-			</div>
+			
 		</div>
 	</div>
 </div>
