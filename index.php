@@ -34,6 +34,7 @@
 				$useract = new user($columns["id"], $columns["nom"], $columns["prenom"], $columns["password"], $columns["pseudo"]);
 				session_start();
 				$_SESSION["user"] = $useract;
+				$_SESSION["user_id"] = $columns["id"];
 				header('location:pages/accueil.php');
 			}
 			else 
