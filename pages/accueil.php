@@ -20,17 +20,6 @@
 	<?php include("../includes/header.php"); ?>
 
 <!-- LAYOUT -->
-<div class="layout">
-	<?php 
-		session_start();
-		$sql = $db->prepare("SELECT id, dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat");
-		$sql->execute();
-		
-		while ($resultat2 = $sql->fetch())
-		{
-			echo "	<div class=\"match\">
-					<h3>".$resultat2['dom'].' '.$resultat2['butdom'].' - '.$resultat2['butext'].' '.$resultat2['ext']. "</h3>" ;
-		?>
 <?php
 session_start();
 $sql = $db->prepare("SELECT id, dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat");
@@ -39,7 +28,7 @@ while ($resultat2 = $sql->fetch())
 {
 ?>
 <div class="row">
-	<div class="col-md-6 col-md-offset-3">
+	<div class="col-md-8 col-md-offset-2">
 		<div class="row">
 			<div class="col-md-4">
 				<h3><?php echo $resultat2['dom']; ?> <?php echo $resultat2['butdom']; ?> - <?php echo $resultat2['butext']; ?> <?php echo $resultat2['ext'];?> </h3>
@@ -70,7 +59,6 @@ while ($resultat2 = $sql->fetch())
 	</div>
 </div>
 
-<!--input type="number" name=""/-->
 <?php
 }
 ?>
@@ -81,33 +69,33 @@ while ($resultat2 = $sql->fetch())
 <?php include("../includes/footer.php"); ?>
 <?php
 if(!empty($_POST["envoyer"]))
-{
-$id_pari = $_POST["id_pari"];
-$user = $_SESSION["user"];
-$cote = $_POST['cote'];
-$somme = $_POST['sommepari'];
-if ($somme > 0)
-{
-if ($somme <51)
-{
-if($user->getPoint()-$somme >= 0)
-{
-$user->parier($somme);
-}
-else
-{
-echo "Vous n'avez pas assez de points pour parier autant, attendez la semaine prochaine.";
-}
-}
-else
-{
-echo "Vous ne pouvez pas parier plus de 50 points";
-}
-}
-else
-{
-echo "Vous devez entrer un nombre";
-}
+	{
+	$id_pari = $_POST["id_pari"];
+	$user = $_SESSION["user"];
+	$cote = $_POST['cote'];
+	$somme = $_POST['sommepari'];
+	if ($somme > 0)
+	{
+		if ($somme <51)
+		{
+			if($user->getPoint()-$somme >= 0)
+			{
+				$user->parier($somme);
+			}
+			else
+			{
+				echo "Vous n'avez pas assez de points pour parier autant, attendez la semaine prochaine.";
+			}
+		}
+		else
+		{
+			echo "Vous ne pouvez pas parier plus de 50 points";
+		}
+	}
+	else
+	{
+		echo "Vous devez entrer un nombre";
+	}
 }
 ?>
 </body>
