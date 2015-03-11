@@ -30,6 +30,10 @@
 			$_SESSION["user_id"]=$columns["id"];
 			if($columns["nb"] == 1)
 			{
+				$sql3 = $db->prepare('SELECT id, nom, prenom, password, pseudo FROM user WHERE id='.$columns["id"].'');
+				$sql3->execute();
+				$useract = new user($columns["id"], $columns["nom"], $columns["prenom"], $columns["password"], $columns["pseudo"]);
+				$_SESSION["user"] = $useract;
 				header('location:pages/acceuil.php');
 			}
 			else 
