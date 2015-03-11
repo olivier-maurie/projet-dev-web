@@ -35,14 +35,14 @@ while ($resultat2 = $sql->fetch())
 			
 			<form method="POST" action="" class="parie">
 				<div class="col-md-3">
-					<?php echo substr($resultat2['dom'], 0, 3); ?>
-					<input type="radio" name="cote"><?php echo $resultat2["cotedom"];?>
+				<?php echo substr($resultat2['dom'], 0, 3); ?>
+				<input type="radio" name="cote"><?php echo $resultat2["cotedom"];?>
 
-					Nul
-					<input type="radio" name="cote" checked><?php echo $resultat2["cotenul"];?>
+				Nul
+				<input type="radio" name="cote" checked><?php echo $resultat2["cotenul"];?>
 
-					<?php echo substr($resultat2['ext'], 0, 3); ?>
-					<input type="radio" name="cote"><?php echo $resultat2["coteext"];?>
+				<?php echo substr($resultat2['ext'], 0, 3); ?>
+				<input type="radio" name="cote"><?php echo $resultat2["coteext"];?>
 
 				</div>
 
