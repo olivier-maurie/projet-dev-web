@@ -1,7 +1,6 @@
 <header>
 	<div class="row">
 		<div class="col-lg-6 col-lg-offset-3">
-			<a href="accueil.php"><h1>Resultats Ligue 1</h1></a>
 			<div class="col-lg-9">
 				<a href="accueil.php"><h1>Resultats Ligue 1</h1></a>
 			</div>
