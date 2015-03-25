@@ -1,3 +1,8 @@
+/*
+SELECT r.id, r.dom, r.ext, r.butdom, r.butext, r.cotedom, r.cotenul, r.coteext FROM resultat r JOIN pari p ON r.dom = p.dom AND r.ext = p.ext 
+WHERE p.id_user != 6
+*/
+
 <?php include('../includes/connexion_bdd.php');
 require_once "../includes/autoload.inc.php"; ?>
 <!DOCTYPE html>
@@ -24,7 +29,11 @@ require_once "../includes/autoload.inc.php"; ?>
 
 <?php
 session_start();
-$sql = $db->prepare("SELECT id, dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat");
+	$user = $_SESSION["user_id"];
+$sql = "SELECT r.id, r.dom, r.ext, r.butdom, r.butext, r.cotedom, r.cotenul, r.coteext FROM resultat r JOIN pari p ON r.dom = p.dom AND r.ext = p.ext 
+WHERE p.id_user != ".$user."";
+echo $sql;
+$sql = $db->prepare($sql);
 $sql->execute();
 while ($resultat2 = $sql->fetch())
 {
@@ -42,17 +51,17 @@ while ($resultat2 = $sql->fetch())
 				<ul>
 					<li>
 						<span class="equipe"><?php echo substr($resultat2['dom'], 0, 3); ?></span>
-						<span><input type="radio" name="cote"/></span>
+						<span><input type="radio" name="cote" value=<?php echo $resultat2["cotedom"]?>></span>
 						<span><?php echo $resultat2["cotedom"];?></span>
 					</li>
 					<li>
 						<span class="equipe">Nul</span>
-						<span><input type="radio" name="cote" checked/></span>
+						<span><input type="radio" name="cote" value=<?php echo $resultat2["cotenul"]?> checked/></span>
 						<span><?php echo $resultat2["cotenul"];?></span>
 					</li>
 					<li>
 						<span class="equipe"><?php echo substr($resultat2['ext'], 0, 3); ?></span>
-						<span><input type="radio" name="cote"/></span>
+						<span><input type="radio" name="cote" value=<?php echo $resultat2["coteext"]?>></span>
 						<span><?php echo $resultat2["coteext"];?></span>
 					</li>
 				</ul>
@@ -92,6 +101,7 @@ if(!empty($_POST["envoyer"]))
 	$user = $_SESSION["user"];
 	$coteparie = $_POST['cote'];
 	$somme = $_POST['sommepari'];
+	echo $_POST["cote"];
 	if ($somme > 0)
 	{
 		if ($somme <51)
