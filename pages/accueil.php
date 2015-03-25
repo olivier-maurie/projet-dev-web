@@ -38,7 +38,7 @@ while ($resultat2 = $sql->fetch())
 		<div class="row">
 			<div class="row">
 				<div class="col-lg-8">
-					<h3><?php echo $resultat2['dom']; ?> <?php echo $resultat2['butdom']; ?> - <?php echo $resultat2['butext']; ?> <?php echo $resultat2['ext'];?> </h3>
+					<h3><?php echo $resultat2['dom']; ?>  -  <?php echo $resultat2['ext'];?> </h3>
 				</div>
 			
 			<form method="POST" action="" class="parie">
@@ -104,7 +104,6 @@ if(!empty($_POST["envoyer"]))
 			{
 				$user->ajouteraupari($id_pari, $somme, $coteparie);
 				$user->parier($somme);
-				var_dump($_SESSION["user"]);
 			}
 			else
 			{
