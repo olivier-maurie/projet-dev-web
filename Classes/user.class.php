@@ -59,7 +59,7 @@ class User {
 		$this->update();
 	}
 	
-	public function ajouteraupari($id, $sommepari)
+	public function ajouteraupari($id, $sommepari, $coteparie)
 	{
 		try
 		{
@@ -78,7 +78,7 @@ class User {
 		$var = $sql2->fetch();
 		if($var["nb"]==1)
 		{
-			$sql3 = $db->prepare("INSERT INTO pari (dom, ext, cotedom, cotenul, coteext, sommeparie, id_user) VALUES('".$var["dom"]."','".$var["ext"]."', '".$var["cotedom"]."', '".$var["cotenul"]."', '".$var["coteext"]."', '".$sommepari."', '".$id_user."')"); 
+			$sql3 = $db->prepare("INSERT INTO pari (dom, ext, cotedom, cotenul, coteext, sommeparie, id_user, coteparie) VALUES('".$var["dom"]."','".$var["ext"]."', '".$var["cotedom"]."', '".$var["cotenul"]."', '".$var["coteext"]."', '".$sommepari."', '".$id_user."', '".$coteparie."')"); 
 			$sql3->execute();
 		}
 		

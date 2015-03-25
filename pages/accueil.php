@@ -90,7 +90,7 @@ if(!empty($_POST["envoyer"]))
 	{
 	$id_pari = $_POST["id_paris"];
 	$user = $_SESSION["user"];
-	$cote = $_POST['cote'];
+	$coteparie = $_POST['cote'];
 	$somme = $_POST['sommepari'];
 	if ($somme > 0)
 	{
@@ -98,7 +98,7 @@ if(!empty($_POST["envoyer"]))
 		{
 			if($user->getPoint()-$somme >= 0)
 			{
-				$user->ajouteraupari($id_pari, $somme);
+				$user->ajouteraupari($id_pari, $somme, $coteparie);
 				$user->parier($somme);
 				var_dump($_SESSION["user"]);
 			}
