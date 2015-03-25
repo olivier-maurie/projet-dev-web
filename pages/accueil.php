@@ -1,10 +1,6 @@
-/*
-SELECT r.id, r.dom, r.ext, r.butdom, r.butext, r.cotedom, r.cotenul, r.coteext FROM resultat r JOIN pari p ON r.dom = p.dom AND r.ext = p.ext 
-WHERE p.id_user != 6
-*/
-
 <?php include('../includes/connexion_bdd.php');
-require_once "../includes/autoload.inc.php"; ?>
+require_once "../includes/autoload.inc.php"; 
+session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,17 +18,16 @@ require_once "../includes/autoload.inc.php"; ?>
     <![endif]-->
 </head>
 <body>
+
 <!-- HEADER -->
 	<?php include("../includes/header.php"); ?>
 
 <!-- LAYOUT -->
 
 <?php
-session_start();
+
 	$user = $_SESSION["user_id"];
-$sql = "SELECT r.id, r.dom, r.ext, r.butdom, r.butext, r.cotedom, r.cotenul, r.coteext FROM resultat r JOIN pari p ON r.dom = p.dom AND r.ext = p.ext 
-WHERE p.id_user != ".$user."";
-echo $sql;
+$sql = "SELECT id, dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat";
 $sql = $db->prepare($sql);
 $sql->execute();
 while ($resultat2 = $sql->fetch())
@@ -101,7 +96,6 @@ if(!empty($_POST["envoyer"]))
 	$user = $_SESSION["user"];
 	$coteparie = $_POST['cote'];
 	$somme = $_POST['sommepari'];
-	echo $_POST["cote"];
 	if ($somme > 0)
 	{
 		if ($somme <51)
@@ -128,6 +122,11 @@ if(!empty($_POST["envoyer"]))
 	}
 }
 }
+
+/*
+SELECT r.id, r.dom, r.ext, r.butdom, r.butext, r.cotedom, r.cotenul, r.coteext FROM resultat r JOIN pari p ON r.dom = p.dom AND r.ext = p.ext 
+WHERE p.id_user != 6
+*/
 
 ?>
 
