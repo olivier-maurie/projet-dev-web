@@ -1,4 +1,6 @@
-<?php include('../includes/connexion_bdd.php'); ?>
+<?php include('../includes/connexion_bdd.php');
+require_once "../includes/autoload.inc.php";
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -31,7 +33,6 @@
 					<tbody>
 						<?php
 							include('../includes/connexion_bdd.php');
-							session_start();
 							$id = $_SESSION["user_id"];
 							
 							$sql = $db->prepare('SELECT dom, ext, coteparie, sommeparie FROM pari WHERE id_user ='.$id.'');
