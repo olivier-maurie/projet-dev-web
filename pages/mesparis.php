@@ -35,12 +35,12 @@ session_start(); ?>
 							include('../includes/connexion_bdd.php');
 							$id = $_SESSION["user_id"];
 							
-							$sql = $db->prepare('SELECT dom, ext, coteparie, sommeparie FROM pari WHERE id_user ='.$id.'');
+							$sql = $db->prepare('SELECT dom, ext, coteparie, sommeparie, equipe_pari FROM pari WHERE id_user ='.$id.'');
 							$sql->execute();
 							while ($liste = $sql->fetch())
 							{
 								echo "<tr>
-											<td>".$liste["dom"]."</td>
+											<td>".$liste["equipe_pari"]."</td>
 											<td>".$liste["coteparie"]."</td>
 											<td>".$liste["sommeparie"]."</td>
 										</tr>";
