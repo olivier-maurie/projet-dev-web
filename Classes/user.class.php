@@ -49,7 +49,9 @@ class User {
 	
 	public function victoire ($cote, $sommepari)
 	{
-		$this->_points = $this->points+($sommepari*$cote);
+		$pointmatch = $this->getPoint();
+		$newpoint = $pointmatch+($sommepari*$cote);
+		$this->setPoint($newpoint);
 		$this->update();
 	}
 	
@@ -59,7 +61,7 @@ class User {
 		$this->update();
 	}
 	
-	public function ajouteraupari($id, $sommepari, $coteparie)
+	public function ajouteraupari($id, $sommepari, $coteparie, $equipepari)
 	{
 		try
 		{
@@ -78,7 +80,7 @@ class User {
 		$var = $sql2->fetch();
 		if($var["nb"]==1)
 		{
-			$sql3 = $db->prepare("INSERT INTO pari (dom, ext, cotedom, cotenul, coteext, sommeparie, id_user, coteparie) VALUES('".$var["dom"]."','".$var["ext"]."', '".$var["cotedom"]."', '".$var["cotenul"]."', '".$var["coteext"]."', '".$sommepari."', '".$id_user."', '".$coteparie."')"); 
+			$sql3 = $db->prepare("INSERT INTO pari (dom, ext, cotedom, cotenul, coteext, sommeparie, id_user, coteparie, equipe_pari) VALUES('".$var["dom"]."','".$var["ext"]."', '".$var["cotedom"]."', '".$var["cotenul"]."', '".$var["coteext"]."', '".$sommepari."', '".$id_user."', '".$coteparie."', '".$equipepari."')"); 
 			$sql3->execute();
 		}
 		
@@ -91,5 +93,10 @@ class User {
 	public function getPoint()
 	{
 		return $this->_points;
+	}
+	
+	public function setPoint($newpoint)
+	{
+		$this->_points = $newpoint;
 	}
 }

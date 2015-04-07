@@ -31,14 +31,14 @@ $sql = "SELECT id, dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resu
 $sql = $db->prepare($sql);
 $sql->execute();
 while ($resultat2 = $sql->fetch())
-{
+{$nul = "nul";
 ?>
 <div class="row">
 	<div class="col-lg-6 col- col-lg-offset-3">
 		<div class="row">
 			<div class="row">
 				<div class="col-lg-8">
-					<h3><?php echo $resultat2['dom']; ?> <?php echo $resultat2['butdom']; ?> - <?php echo $resultat2['butext']; ?> <?php echo $resultat2['ext'];?> </h3>
+					<h3><?php echo $resultat2['dom']; ?>  -  <?php echo $resultat2['ext'];?> </h3>
 				</div>
 			
 			<form method="POST" action="" class="parie">
@@ -46,18 +46,21 @@ while ($resultat2 = $sql->fetch())
 				<ul>
 					<li>
 						<span class="equipe"><?php echo substr($resultat2['dom'], 0, 3); ?></span>
-						<span><input type="radio" name="cote" value=<?php echo $resultat2["cotedom"]?>></span>
+						<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['dom'], $resultat2["cotedom"]));?>></span>
 						<span><?php echo $resultat2["cotedom"];?></span>
+						<?php $dom = $resultat2["cotedom"];?>
 					</li>
 					<li>
 						<span class="equipe">Nul</span>
-						<span><input type="radio" name="cote" value=<?php echo $resultat2["cotenul"]?> checked/></span>
+						<span><input type="radio" name="cote" value=<?php echo json_encode(array($nul, $resultat2["cotenul"]))?> checked/></span>
 						<span><?php echo $resultat2["cotenul"];?></span>
+						<?php $nul = $resultat2["cotenul"];?>
 					</li>
 					<li>
 						<span class="equipe"><?php echo substr($resultat2['ext'], 0, 3); ?></span>
-						<span><input type="radio" name="cote" value=<?php echo $resultat2["coteext"]?>></span>
+						<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['ext'], $resultat2["coteext"])) ?>></span>
 						<span><?php echo $resultat2["coteext"];?></span>
+						<?php $ext=$resultat2["coteext"];?>
 					</li>
 				</ul>
 				</div>
@@ -94,31 +97,34 @@ if(!empty($_POST["envoyer"]))
 	{
 	$id_pari = $_POST["id_paris"];
 	$user = $_SESSION["user"];
-	$coteparie = $_POST['cote'];
 	$somme = $_POST['sommepari'];
+	$coolote = $_POST["cote"];
+	$cote  = json_decode($coolote);
+	$coteparie= $cote[1];
+	$equipepari = $cote[0];
 	if ($somme > 0)
 	{
 		if ($somme <51)
 		{
 			if($user->getPoint()-$somme >= 0)
 			{
-				$user->ajouteraupari($id_pari, $somme, $coteparie);
+				$user->ajouteraupari($id_pari, $somme, $coteparie, $equipepari);
 				$user->parier($somme);
-				var_dump($_SESSION["user"]);
+				header('location : mesparis.php');
 			}
 			else
 			{
-				echo "Vous n'avez pas assez de points pour parier autant, attendez la semaine prochaine.";
+				echo "<script>alert(\"Vous n'avez pas assez de points pour parier autant, attendez la semaine prochaine.\")</script>";
 			}
 		}
 		else
 		{
-			echo "Vous ne pouvez pas parier plus de 50 points";
+			echo "<script>alert(\"Vous ne pouvez pas parier plus de 50 points\")</script>";
 		}
 	}
 	else
 	{
-		echo "Vous devez entrer un nombre";
+		echo "<script>alert(\"Vous devez entrer un nombre\")</script>";
 	}
 }
 }

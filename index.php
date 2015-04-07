@@ -21,21 +21,28 @@
 		require_once '/autoload.inc.php';
 		if (!empty($_POST["envoyer"]))
 		{
-			$sql = 'SELECT COUNT(*) AS nb, id,nom, prenom, pseudo, password, points FROM user WHERE pseudo ="'.$_POST["pseudo"].'" AND password ="'.$_POST["password"].'"';
+			$sql = 'SELECT COUNT(*) AS nb, id,nom, prenom, pseudo, password, points, admin FROM user WHERE pseudo ="'.$_POST["pseudo"].'" AND password ="'.$_POST["password"].'"';
 			$sql2 = $db->prepare($sql);
 			$sql2->execute();
 			$columns =$sql2->fetch();
 			$_SESSION["user_id"]=$columns["id"];
 			if($columns["nb"] == 1)
 			{
-				$sql3 = $db->prepare('SELECT id, nom, prenom, password, pseudo, points FROM user WHERE id='.$columns["id"].'');
+				$sql3 = $db->prepare('SELECT id, nom, prenom, password, pseudo, points ,admin FROM user WHERE id='.$columns["id"].'');
 				$sql3->execute();
 				$useract = new user($columns["id"], $columns["nom"], $columns["prenom"], $columns["password"], $columns["pseudo"], $columns["points"]);
 				session_start();
 				$_SESSION["user"] = $useract;
 				$_SESSION["user_id"] = $columns["id"];
 				$_SESSION["points"] = $columns["points"];
-				header('location:pages/accueil.php');
+				echo "admin : ".$columns["admin"];
+				if($columns["admin"]==11)
+				{
+					header('location:pages/pageadmin.php');
+				}
+				else{
+					header('location:pages/accueil.php');
+				}
 			}
 			else 
 			{
