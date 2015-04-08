@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
 	</head>
 	<body>
 		<?php require_once '../includes/connexion_bdd.php'; 
@@ -11,8 +12,8 @@
 		<form method="POST" action="">
 			<?php while ($team = $sql->fetch())
 			{ ?>
-			<input type="radio" name="dom" value=<?php echo $team["nom"];?>/><?php echo $team["nom"];?>
-			<input type="radio" name="ext" value=<?php echo $team["nom"];?>/><?php echo $team["nom"]; echo "blaaaa";?>
+			<input id="radioteamdom" type="radio" name="dom" value=<?php echo $team["nom"];?>/><?php echo $team["nom"];?>
+			<input id="radioteamext" type="radio" name="ext" value=<?php echo $team["nom"];?>/><?php echo $team["nom"]; echo "blaaaa";?>
 			<?php }?>
 			<input type="double" name="cotedom" placeholder="cote domicile"/>
 			<input type="double" name="cotenul" placeholder="cote nul"/>
