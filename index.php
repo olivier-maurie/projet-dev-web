@@ -16,19 +16,20 @@
     <![endif]-->
 </head>
 <body>
-<header>
-	<div class="conainer">
+
+<header><!-- HEADER -->
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<!-- logo -->
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-					<a href="index.php"><h1>Resultats Ligue 1</h1></a>
+					<a href="index.php"><h1>Resultats Ligue 1</h1></a><!-- logo -->
 				</div>
-			<!-- menu -->
 			</div>
 		</div>
 	</div>
 </header>
+
+<div class="container"><!-- CONTENT -->
 	<?php
 		require_once '/autoload.inc.php';
 		if (!empty($_POST["envoyer"]))
@@ -85,28 +86,29 @@
 		}
 	?>
 	
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-				<form method="POST" action="" class="index">
-					<h4>Connexion</h4>
-					<input type="text" class="form-control" name="pseudo" placeholder="Pseudo" />
-					<input type="password" class="form-control" name="password" placeholder="Mot de passe"/>
-					<input type="submit" class="btn btn-default" name="envoyer"/>
-				</form>
-
-				<form method="POST" action="" class="index">
-					<h4>Inscription</h4>
-					<input type="text" class="form-control" name="pseudoin" placeholder="Pseudo"/>
-					<input type="password" class="form-control" name="passwordin" placeholder="Mot de passe"/>
-					<input type="password" class="form-control"name="repassword" placeholder="Confirmer le mot de passe"/>
-					<input type="text" class="form-control"name="nom" placeholder="Nom"/>
-					<input type="text" class="form-control"name="prenom" placeholder="Prénom"/>
-					<input type="submit" class="btn btn-default" name="soumettre"/>
-				</form>
-			</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+			<form method="POST" action="" class="index">
+				<h4 class="text-center">Connexion</h4>
+				<input type="text" class="form-control" name="pseudo" placeholder="Pseudo" />
+				<input type="password" class="form-control" name="password" placeholder="Mot de passe"/>
+				<input type="submit" class="btn btn-default center-block" name="envoyer"/>
+			</form>
+			<form method="POST" action="" class="index">
+				<h4 class="text-center">Inscription</h4>
+				<input type="text" class="form-control" name="pseudoin" placeholder="Pseudo"/>
+				<input type="password" class="form-control" name="passwordin" placeholder="Mot de passe"/>
+				<input type="password" class="form-control"name="repassword" placeholder="Confirmer le mot de passe"/>
+				<input type="text" class="form-control"name="nom" placeholder="Nom"/>
+				<input type="text" class="form-control"name="prenom" placeholder="Prénom"/>
+				<input type="submit" class="btn btn-default center-block" name="soumettre"/>
+			</form>
 		</div>
 	</div>
+		
+</div>
 	
-	<!-- FOOTER -->
-	<?php include_once('includes/footer.php'); ?>
+	<?php include_once('includes/footer.php'); ?><!-- FOOTER -->
+	
+</body>
+</html>

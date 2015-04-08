@@ -3,7 +3,7 @@
 }
 div { box-sizing : border-box; }
 
-footer { bottom : 0; position : fixed; margin-top : 100px; }
+footer { bottom : 0; position : relative; margin-top : 100px; }
 ul,li { padding : 0; margin : 0; list-style : none;}
 .clear { clear : both; }
 .hidden { display : none;}
@@ -15,7 +15,7 @@ header a:hover { color : #fff; }
 
 /***** accueil *****/
 .equipe { display : block; width : 28px; float : left; }
-.box-pari { height : 150px; border-bottom : 1px solid #ddd; }
+.box-match { height : 200px; border-bottom : 1px solid #ddd; }
 .valeur-parie, .btn-parie{ margin-top : 13px; }
 
 /***** mesparis *****/

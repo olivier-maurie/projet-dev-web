@@ -18,8 +18,9 @@ session_start(); ?>
     <![endif]-->
 </head>
 <body>
-	<?php include("../includes/header.php"); ?>
+	<?php include("../includes/header.php"); ?><!-- HEADER -->
 	
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12">
 				<table class="table table-striped .table-responsive">
@@ -44,14 +45,13 @@ session_start(); ?>
 											<td>".$liste["coteparie"]."</td>
 											<td>".$liste["sommeparie"]."</td>
 										</tr>";
-										
 							}	
 						?>
 					</tbody>
 				</table>
 			</div>
 		</div>
+	</div>
 
-	<!-- FOOTER -->
-	<?php include_once('../includes/footer.php'); ?>
+	<?php include_once('../includes/footer.php'); ?><!-- FOOTER -->
 </html>
