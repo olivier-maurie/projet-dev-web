@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12">
 		<!-- logo -->
-			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-9">
+			<div class="col-lg-8 col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-8 col-xs-offset-1">
 				<a href="accueil.php"><h1>Resultats Ligue 1</h1></a>
 			</div>
 		<!-- menu -->

@@ -40,7 +40,7 @@ session_start(); ?>
 							while ($liste = $sql->fetch())
 							{
 								echo "<tr>
-											<td>".$liste["equipe_pari"]."</td>
+											<td>".$liste["dom"]." - ".$liste["ext"]." (".$liste["equipe_pari"].")</td>
 											<td>".$liste["coteparie"]."</td>
 											<td>".$liste["sommeparie"]."</td>
 										</tr>";
