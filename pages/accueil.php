@@ -4,7 +4,7 @@ session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="URF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Projet foot | Connexion, inscription</title>
@@ -23,75 +23,51 @@ session_start();?>
 	<?php include("../includes/header.php"); ?>
 
 <!-- LAYOUT -->
-
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12">
 <?php
-
-	$user = $_SESSION["user_id"];
+/* Affichage des box de pari pour chaque match */
+$user = $_SESSION["user_id"];
 $sql = "SELECT id, dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat";
 $sql = $db->prepare($sql);
 $sql->execute();
 while ($resultat2 = $sql->fetch())
 {$nul = "nul";
 ?>
-<div class="row">
-	<div class="col-lg-6 col- col-lg-offset-3">
-		<div class="row">
-			<div class="row">
-				<div class="col-lg-8">
-					<h3><?php echo $resultat2['dom']; ?>  -  <?php echo $resultat2['ext'];?> </h3>
-				</div>
-			
-			<form method="POST" action="" class="parie">
-				<div class="col-lg-4">
-				<ul>
-					<li>
-						<span class="equipe"><?php echo substr($resultat2['dom'], 0, 3); ?></span>
-						<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['dom'], $resultat2["cotedom"]));?>></span>
-						<span><?php echo $resultat2["cotedom"];?></span>
-						<?php $dom = $resultat2["cotedom"];?>
-					</li>
-					<li>
-						<span class="equipe">Nul</span>
-						<span><input type="radio" name="cote" value=<?php echo json_encode(array($nul, $resultat2["cotenul"]))?> checked/></span>
-						<span><?php echo $resultat2["cotenul"];?></span>
-						<?php $nul = $resultat2["cotenul"];?>
-					</li>
-					<li>
-						<span class="equipe"><?php echo substr($resultat2['ext'], 0, 3); ?></span>
-						<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['ext'], $resultat2["coteext"])) ?>></span>
-						<span><?php echo $resultat2["coteext"];?></span>
-						<?php $ext=$resultat2["coteext"];?>
-					</li>
-				</ul>
-				</div>
-			</div>
-				<div class="row">
-				
-					<div class="col-lg-8">
-						<input type="number" class="form-control" min="1" max="50" name="sommepari" placeholder="(uniquement entre 1 et 50)">
-					</div>
-					<div class="col-lg-4">
-						<input type="submit" class="btn btn-default" name="envoyer" value="PARIEZ !">
-					</div>
-					<input type="number" name="id_paris" class="hidden-parie" value="<?php echo $resultat2["id"]; ?>"/>
-				</div>
-			</form>
-			
-			
-		</div>
+
+	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 box-pari">
+		<h3><?php echo $resultat2['dom']; ?>  -  <?php echo $resultat2['ext'];?> </h3>
+		<form method="POST" action="" class="parie">
+			<ul>
+				<li>
+					<span class="equipe"><?php echo substr($resultat2['dom'], 0, 3); ?></span>
+					<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['dom'], $resultat2["cotedom"]));?>></span>
+					<span><?php echo $resultat2["cotedom"];?></span>
+					<?php $dom = $resultat2["cotedom"];?>
+				</li>
+				<li>
+					<span class="equipe">Nul</span>
+					<span><input type="radio" name="cote" value=<?php echo json_encode(array($nul, $resultat2["cotenul"]))?> checked/></span>
+					<span><?php echo $resultat2["cotenul"];?></span>
+					<?php $nul = $resultat2["cotenul"];?>
+				</li>
+				<li>
+					<span class="equipe"><?php echo substr($resultat2['ext'], 0, 3); ?></span>
+					<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['ext'], $resultat2["coteext"])) ?>></span>
+					<span><?php echo $resultat2["coteext"];?></span>
+					<?php $ext=$resultat2["coteext"];?>
+				</li>
+			</ul>
+
+				<input type="number" class="form-control" min="1" max="50" name="sommepari" placeholder="(uniquement entre 1 et 50)">
+				<input type="submit" class="btn btn-default" name="envoyer" value="PARIEZ !">
+				<input type="number" name="id_paris" class="hidden-parie" value="<?php echo $resultat2["id"]; ?>"/>
+		</form>
 	</div>
-</div>
 
 <?php
 }
-
-?>
-
-
-
-<!-- FOOTER -->
-<?php include("../includes/footer.php"); ?>
-<?php
+/* condition de pari */
 if(!empty($_POST["envoyer"]))
 {
 	{
@@ -135,6 +111,12 @@ WHERE p.id_user != 6
 */
 
 ?>
+	</div>
+</div>
+
+<!-- FOOTER -->
+<?php include("../includes/footer.php"); ?>
+
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

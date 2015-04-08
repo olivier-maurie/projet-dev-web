@@ -1,30 +1,18 @@
 <header>
 	<div class="row">
-		<div class="col-lg-6 col-lg-offset-3">
-			<div class="col-lg-9">
+		<div class="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12">
+		<!-- logo -->
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-9">
 				<a href="accueil.php"><h1>Resultats Ligue 1</h1></a>
 			</div>
-			<div class="col-lg-3">
-			<?php
-				echo "bonjour l'ami !";
-				echo "Ton nombre de point est de ".$_SESSION["user"]->getPoint();
-			?>
-				<div class="dropdown">
-				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-					Dropdown
-					<span class="caret"></span>
-				</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-					</ul>
-				</div>
+		<!-- menu -->
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+				<ul>
+					<li><a href="../pages/mesparis.php">Mes Paris</a><li>
+					<li><?php echo "Points : ".$_SESSION["user"]->getPoint();?></li>
+					<li><a href="../includes/logout.php">Déconnexion</a></li>
+				</ul>
 			</div>
-		</div><a href="../pages/mesparis.php">Mes Paris</a>
-		<div class="mesparis" style="float:right">
 		</div>
 	</div>
-	
 </header>
