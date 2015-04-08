@@ -4,9 +4,11 @@
 		<meta charset="utf8">
 	</head>
 	<body>
+		<a href="ajoutadmin.php">Ajouter des matchs</a>
 		<?php
 			require_once "../includes/connexion_bdd.php";
 			require_once "../includes/autoload.inc.php";
+			
 			$sql = "SELECT id, dom, ext, butdom, butext, cotedom, cotenul, coteext FROM resultat";
 			$sql = $db->prepare($sql);
 			$sql->execute();
@@ -28,19 +30,19 @@
 								<ul>
 									<li>
 										<span class="equipe"><?php echo substr($resultat2['dom'], 0, 3); ?></span>
-										<span><input type="radio" name="cote" value=<?php echo $resultat2["dom"];?>></span>
+										<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2["dom"], $resultat2["dom"]));?>></span>
 										<span><?php echo $resultat2["cotedom"];?></span>
 										<?php $dom = $resultat2["cotedom"];?>
 									</li>
 									<li>
 										<span class="equipe">Nul</span>
-										<span><input type="radio" name="cote" value=<?php echo $nul?> checked/></span>
+										<span><input type="radio" name="cote" value=<?php echo json_encode(array($nul, $resultat2["dom"]));?> checked/></span>
 										<span><?php echo $resultat2["cotenul"];?></span>
 										<?php $nul = $resultat2["cotenul"];?>
 									</li>
 									<li>
 										<span class="equipe"><?php echo substr($resultat2['ext'], 0, 3); ?></span>
-										<span><input type="radio" name="cote" value=<?php echo $resultat2['ext'] ?>></span>
+										<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['ext'], $resultat2["dom"])); ?>></span>
 										<span><?php echo $resultat2["coteext"];?></span>
 										<?php $ext=$resultat2["coteext"];?>
 									</li>
@@ -63,9 +65,12 @@
 			<?php
 				if(!empty($_POST["envoyer"]))
 				{
-				
-					$match = $_POST["cote"];
-					$req_pari2 = "SELECT id, dom, ext, cotedom, cotenul, coteext, sommeparie, id_user, coteparie, equipe_pari FROM pari WHERE equipe_pari = '".$match."'";
+					$json = $_POST["cote"];
+					$lol = json_decode($json);
+					$match= $lol[0];
+					$equipe_dom = $lol[1];
+					echo $match;
+					$req_pari2 = "SELECT id, dom, ext, cotedom, cotenul, coteext, sommeparie, id_user, coteparie, equipe_pari FROM pari WHERE equipe_pari = '".$match."' AND dom = '".$equipe_dom."'";
 					$req_pari=$db->prepare($req_pari2);
 					$req_pari->execute();
 					
@@ -85,11 +90,14 @@
 							);
 
 							$delete = $db->prepare($delete2);
-							$delete->execute($params);							
-						}
-						
+							$delete->execute($params);	
+							
+							
+						}						
 					}
-					
+						$sql = "DELETE FROM resultat WHERE dom = '".$equipe_dom."'";
+						$sql2 = $db->prepare($sql);
+						$sql2->execute();
 					
 				}
 			?>
