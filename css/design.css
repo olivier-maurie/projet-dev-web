@@ -1,3 +1,6 @@
+@media (max-width : 480px) {
+	body {display : none; }
+}
 div { box-sizing : border-box; }
 
 footer { bottom : 0; position : fixed; margin-top : 100px; }
@@ -14,3 +17,17 @@ header a:hover { color : #fff; }
 .equipe { display : block; width : 28px; float : left; }
 .box-pari { height : 150px; border-bottom : 1px solid #ddd; }
 .valeur-parie, .btn-parie{ margin-top : 13px; }
+
+/***** mesparis *****/
+@media (min-width : 992px) and (max-width : 1200px) {
+	.table thead tr th:nth-of-type(1){ margin-right : 11%;}
+	.table tr td:nth-of-type(1) { margin-right : 11%;}
+}
+@media (max-width : 768px){
+	.table thead tr th:nth-of-type(1){ padding-left : 11%;}
+	.table tr td:nth-of-type(1) { padding-left : 11%;}
+}
+@media (min-width : 768px) {
+	.table thead tr th:nth-of-type(1){ padding-left : 9.66%;}
+	.table tr td:nth-of-type(1) { padding-left : 9.66%;}
+}

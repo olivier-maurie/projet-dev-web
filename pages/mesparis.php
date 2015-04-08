@@ -21,14 +21,14 @@ session_start(); ?>
 	<?php include("../includes/header.php"); ?>
 	
 		<div class="row">
-			<div class="col-lg-6 col-lg-offset-3">
-				<table class="table table-striped">
+			<div class="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12">
+				<table class="table table-striped .table-responsive">
 					<thead>
-					<tr>
-						<th>Match</th>
-						<th>Cotes</th>
-						<th>Mise</th>
-					<tr>
+						<tr>
+							<th>Match</th>
+							<th>Cotes</th>
+							<th>Mise</th>
+						<tr>
 					</thead>
 					<tbody>
 						<?php
@@ -51,9 +51,7 @@ session_start(); ?>
 				</table>
 			</div>
 		</div>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>
-	</body>
+
+	<!-- FOOTER -->
+	<?php include_once('../includes/footer.php'); ?>
 </html>
