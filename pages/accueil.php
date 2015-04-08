@@ -33,12 +33,20 @@ $sql = $db->prepare($sql);
 $sql->execute();
 while ($resultat2 = $sql->fetch())
 {$nul = "nul";
+$logodomsql = "SELECT logo FROM equipe WHERE nom = '".$resultat2["dom"]."'";
+$logodomexe = $db->prepare($logodomsql);
+$logodomexe->execute();
+$logodom = $logodomexe->fetch();
+$logoextsql = "SELECT logo FROM equipe WHERE nom = '".$resultat2["ext"]."'";
+$logoextexe = $db->prepare($logoextsql);
+$logoextexe->execute();
+$logoext = $logoextexe->fetch();
 ?>
 
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 box-pari">
-		<h3 class="text-center"><?php echo $resultat2['dom']; ?>  -  <?php echo $resultat2['ext'];?> </h3>
+		<h3 class="text-center"><img src="..<?php echo $logodom["logo"];?>" alt="image <?php echo $logodom["logo"];?>" /><?php echo $resultat2['dom']; ?>  -  <?php echo $resultat2['ext'];?> <img src="..<?php echo $logoext["logo"];?>" alt="image <?php echo $logoext["logo"];?>"/></h3>
 		<form method="POST" action="" class="parie">
-			<div class="row">
+			<div class="row"> 
 				<div class="col-lg-2 col-md-2 col-md-offset-1 col-sm-3 col-xs-3 col-xs-offset-1">
 					<ul>
 						<li>
@@ -46,6 +54,7 @@ while ($resultat2 = $sql->fetch())
 							<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['dom'], $resultat2["cotedom"]));?>></span>
 							<span><?php echo $resultat2["cotedom"];?></span>
 							<?php $dom = $resultat2["cotedom"];?>
+							
 						</li>
 						<li>
 							<span class="equipe">Nul</span>
@@ -58,6 +67,7 @@ while ($resultat2 = $sql->fetch())
 							<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['ext'], $resultat2["coteext"])) ?>></span>
 							<span><?php echo $resultat2["coteext"];?></span>
 							<?php $ext=$resultat2["coteext"];?>
+							
 						</li>
 					</ul>
 				</div>
