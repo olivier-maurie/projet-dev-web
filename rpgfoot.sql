@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 08 Avril 2015 à 11:14
+-- Généré le :  Mer 08 Avril 2015 à 12:06
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -41,10 +41,9 @@ INSERT INTO `equipe` (`nom`, `logo`, `id`) VALUES
 ('Bastia', '/images/bastia.png', 1),
 ('Bordeaux', '/images/bordeaux.png', 2),
 ('Caen', '/images/caen.png', 3),
-('Evian Thonon-Gaillard', '/images/evian.png', 4),
+('Evian TG', '/images/evian.png', 4),
 ('Guingamp', '/images/guingamp.png', 5),
 ('Lens', '/images/lens.png', 6),
-('Lille', '/imesg/lille.png', 7),
 ('Lille', '/images/lille.png', 8),
 ('Lorient', '/images/lorient.png', 9),
 ('Lyon', '/images/lyon.png', 10),
@@ -54,7 +53,7 @@ INSERT INTO `equipe` (`nom`, `logo`, `id`) VALUES
 ('Montpellier', '/images/montpellier.png', 14),
 ('Nantes', '/images/nantes.png', 15),
 ('Nice', '/images/nice.png', 16),
-('Paris Saint-Germain', '/images/paris.png', 17),
+('Paris SG', '/images/paris.png', 17),
 ('Reims', '/images/reims.png', 18),
 ('Rennes', '/images/rennes.png', 19),
 ('Saint-Etienne', '/images/saintetienne.png', 20),
@@ -102,6 +101,7 @@ CREATE TABLE IF NOT EXISTS `resultat` (
   `cotedom` double NOT NULL,
   `cotenul` double NOT NULL,
   `coteext` double NOT NULL,
+  `logo_res` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
@@ -109,13 +109,13 @@ CREATE TABLE IF NOT EXISTS `resultat` (
 -- Contenu de la table `resultat`
 --
 
-INSERT INTO `resultat` (`id`, `dom`, `ext`, `butdom`, `butext`, `cotedom`, `cotenul`, `coteext`) VALUES
-(7, 'Lille ', 'Reims', 0, 0, 1.64, 3.5, 6),
-(8, 'Nice', 'Evian TG', 0, 0, 2, 3.3, 3.9),
-(9, 'Metz', 'Toulouse', 0, 0, 2.7, 3.2, 2.65),
-(10, 'Montpellier', 'Bastia', 0, 0, 1.95, 3.45, 3.9),
-(12, 'Nantes', 'Caen', 0, 0, 2.1, 3.2, 3.5),
-(13, 'Marseille', 'Paris SG', 0, 0, 3, 3.25, 2.35);
+INSERT INTO `resultat` (`id`, `dom`, `ext`, `butdom`, `butext`, `cotedom`, `cotenul`, `coteext`, `logo_res`) VALUES
+(7, 'Lille ', 'Reims', 0, 0, 1.64, 3.5, 6, ''),
+(8, 'Nice', 'Evian TG', 0, 0, 2, 3.3, 3.9, ''),
+(9, 'Metz', 'Toulouse', 0, 0, 2.7, 3.2, 2.65, ''),
+(10, 'Montpellier', 'Bastia', 0, 0, 1.95, 3.45, 3.9, ''),
+(12, 'Nantes', 'Caen', 0, 0, 2.1, 3.2, 3.5, ''),
+(13, 'Marseille', 'Paris SG', 0, 0, 3, 3.25, 2.35, '');
 
 -- --------------------------------------------------------
 
