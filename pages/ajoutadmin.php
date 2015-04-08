@@ -3,10 +3,17 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<?php require_once '../includes/connexion_bdd.php'; ?>
+		<?php require_once '../includes/connexion_bdd.php'; 
+			$sql2= "SELECT nom FROM equipe";
+			$sql = $db->prepare($sql2);
+			$sql->execute();
+		?>
 		<form method="POST" action="">
-			<input type="text" name="dom" placeholder="domicile"/>
-			<input type="text" name="ext" placeholder="exterieur"/>
+			<?php while ($team = $sql->fetch())
+			{ ?>
+			<input type="radio" name="dom" value=<?php echo $team["nom"];?>/><?php echo $team["nom"];?>
+			<input type="radio" name="ext" value=<?php echo $team["nom"];?>/><?php echo $team["nom"]; echo "blaaaa";?>
+			<?php }?>
 			<input type="double" name="cotedom" placeholder="cote domicile"/>
 			<input type="double" name="cotenul" placeholder="cote nul"/>
 			<input type="double" name="coteext" placeholder="cote exterieur"/>
