@@ -16,7 +16,19 @@
     <![endif]-->
 </head>
 <body>
-
+<header>
+	<div class="conainer">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<!-- logo -->
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+					<a href="index.php"><h1>Resultats Ligue 1</h1></a>
+				</div>
+			<!-- menu -->
+			</div>
+		</div>
+	</div>
+</header>
 	<?php
 		require_once '/autoload.inc.php';
 		if (!empty($_POST["envoyer"]))
@@ -75,7 +87,7 @@
 	
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
+			<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
 				<form method="POST" action="" class="index">
 					<h4>Connexion</h4>
 					<input type="text" class="form-control" name="pseudo" placeholder="Pseudo" />
@@ -96,6 +108,7 @@
 		</div>
 	</div>
 	
+	<?php include_once('includes/footer.php'); ?>
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

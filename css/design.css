@@ -1,15 +1,16 @@
 div { box-sizing : border-box; }
-header { background : #0C5224; color : #fff; }
-
 
 footer { bottom : 0; position : fixed; margin-top : 100px; }
 ul,li { padding : 0; margin : 0; list-style : none;}
-.hidden-parie { display : none; }
-/***** accueil *****/
-.equipe { width : 28px; display : block; float : left;}
-.box-pari { height : 300px; border-bottom : 1px solid black; }
+.clear { clear : both; }
+.hidden { display : none;}
 
-@media (min-width : 768px) {
-	.box-pari:nth-of-type(3n) { border-left : 1px solid black; }	
-	.box-pari:nth-of-type(3n+1) { border-right : 1px solid black; }
-}
+/***** HEADER *****/
+header { background : #417399; color : #fff; }
+header a { color : #fff; }
+header a:hover { color : #fff; }
+
+/***** accueil *****/
+.equipe { display : block; width : 28px; float : left; }
+.box-pari { height : 150px; border-bottom : 1px solid #ddd; }
+.valeur-parie, .btn-parie{ margin-top : 13px; }

@@ -35,33 +35,40 @@ while ($resultat2 = $sql->fetch())
 {$nul = "nul";
 ?>
 
-	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 box-pari">
-		<h3><?php echo $resultat2['dom']; ?>  -  <?php echo $resultat2['ext'];?> </h3>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 box-pari">
+		<h3 class="text-center"><?php echo $resultat2['dom']; ?>  -  <?php echo $resultat2['ext'];?> </h3>
 		<form method="POST" action="" class="parie">
-			<ul>
-				<li>
-					<span class="equipe"><?php echo substr($resultat2['dom'], 0, 3); ?></span>
-					<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['dom'], $resultat2["cotedom"]));?>></span>
-					<span><?php echo $resultat2["cotedom"];?></span>
-					<?php $dom = $resultat2["cotedom"];?>
-				</li>
-				<li>
-					<span class="equipe">Nul</span>
-					<span><input type="radio" name="cote" value=<?php echo json_encode(array($nul, $resultat2["cotenul"]))?> checked/></span>
-					<span><?php echo $resultat2["cotenul"];?></span>
-					<?php $nul = $resultat2["cotenul"];?>
-				</li>
-				<li>
-					<span class="equipe"><?php echo substr($resultat2['ext'], 0, 3); ?></span>
-					<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['ext'], $resultat2["coteext"])) ?>></span>
-					<span><?php echo $resultat2["coteext"];?></span>
-					<?php $ext=$resultat2["coteext"];?>
-				</li>
-			</ul>
-
-				<input type="number" class="form-control" min="1" max="50" name="sommepari" placeholder="(uniquement entre 1 et 50)">
-				<input type="submit" class="btn btn-default" name="envoyer" value="PARIEZ !">
-				<input type="number" name="id_paris" class="hidden-parie" value="<?php echo $resultat2["id"]; ?>"/>
+			<div class="row">
+				<div class="col-lg-2 col-md-2 col-md-offset-1 col-sm-3 col-xs-3 col-xs-offset-1">
+					<ul>
+						<li>
+							<span class="equipe"><?php echo substr($resultat2['dom'], 0, 3); ?></span>
+							<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['dom'], $resultat2["cotedom"]));?>></span>
+							<span><?php echo $resultat2["cotedom"];?></span>
+							<?php $dom = $resultat2["cotedom"];?>
+						</li>
+						<li>
+							<span class="equipe">Nul</span>
+							<span><input type="radio" name="cote" value=<?php echo json_encode(array($nul, $resultat2["cotenul"]))?> checked/></span>
+							<span><?php echo $resultat2["cotenul"];?></span>
+							<?php $nul = $resultat2["cotenul"];?>
+						</li>
+						<li>
+							<span class="equipe"><?php echo substr($resultat2['ext'], 0, 3); ?></span>
+							<span><input type="radio" name="cote" value=<?php echo json_encode(array($resultat2['ext'], $resultat2["coteext"])) ?>></span>
+							<span><?php echo $resultat2["coteext"];?></span>
+							<?php $ext=$resultat2["coteext"];?>
+						</li>
+					</ul>
+				</div>
+				<div class="col-lg-6 col-md-5 col-sm-5 col-xs-5">
+					<input type="number" class="form-control valeur-parie" min="1" max="50" name="sommepari" placeholder="(de 1 à 50 points)">
+				</div>
+				<div class="col-xs-1">
+					<input type="submit" class="btn btn-default btn-parie" name="envoyer" value="PARIEZ !">
+				</div>
+				<input type="number" name="id_paris" class="hidden" value="<?php echo $resultat2["id"]; ?>"/>
+			</div>
 		</form>
 	</div>
 
@@ -70,7 +77,6 @@ while ($resultat2 = $sql->fetch())
 /* condition de pari */
 if(!empty($_POST["envoyer"]))
 {
-	{
 	$id_pari = $_POST["id_paris"];
 	$user = $_SESSION["user"];
 	$somme = $_POST['sommepari'];
@@ -86,7 +92,6 @@ if(!empty($_POST["envoyer"]))
 			{
 				$user->ajouteraupari($id_pari, $somme, $coteparie, $equipepari);
 				$user->parier($somme);
-				header('location : mesparis.php');
 			}
 			else
 			{
@@ -103,12 +108,6 @@ if(!empty($_POST["envoyer"]))
 		echo "<script>alert(\"Vous devez entrer un nombre\")</script>";
 	}
 }
-}
-
-/*
-SELECT r.id, r.dom, r.ext, r.butdom, r.butext, r.cotedom, r.cotenul, r.coteext FROM resultat r JOIN pari p ON r.dom = p.dom AND r.ext = p.ext 
-WHERE p.id_user != 6
-*/
 
 ?>
 	</div>
