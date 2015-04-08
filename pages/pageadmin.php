@@ -5,6 +5,7 @@
 	</head>
 	<body>
 		<a href="ajoutadmin.php">Ajouter des matchs</a>
+		<a href="listeuser.php">Liste des utilistauers</a>
 		<?php
 			require_once "../includes/connexion_bdd.php";
 			require_once "../includes/autoload.inc.php";
