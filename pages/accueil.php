@@ -80,7 +80,7 @@ session_start();?>
 							<input type="number" class="form-control valeur-parie" min="1" max="50" name="sommepari" placeholder="(de 1 à 50 points)">
 						</div>
 						<div class="col-xs-1">
-							<input type="submit" class="btn btn-default btn-parie" name="envoyer" value="PARIEZ !">
+							<input type="submit" class="btn btn-default btn-parie btn-primary" name="envoyer" value="PARIEZ !">
 						</div>
 						<input type="number" name="id_paris" class="hidden" value="<?php echo $resultat2["id"]; ?>"/>
 					</form>
