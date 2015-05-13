@@ -5,8 +5,11 @@ div { box-sizing : border-box; }
 
 footer { bottom : 0; position : relative; margin-top : 100px; }
 ul,li { padding : 0; margin : 0; list-style : none;}
+p { text-align : justify; }
+
 .clear { clear : both; }
 .hidden { display : none;}
+.erreur { color : red; font-weight : bold; }
 
 /***** HEADER *****/
 header { background : #417399; color : #fff; }
@@ -34,3 +37,4 @@ header a:hover { color : #fff; }
 
 /***** pageadmin *****/
 .resultat-admin { border-bottom : 3px solid grey; margin-bottom : 8px; }
+.valid_result { margin-top : 15px; }

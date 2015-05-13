@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 08 Avril 2015 à 12:06
+-- Généré le :  Ven 08 Mai 2015 à 22:22
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -77,14 +77,17 @@ CREATE TABLE IF NOT EXISTS `pari` (
   `coteparie` float NOT NULL,
   `equipe_pari` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Contenu de la table `pari`
 --
 
 INSERT INTO `pari` (`id`, `dom`, `ext`, `cotedom`, `cotenul`, `coteext`, `sommeparie`, `id_user`, `coteparie`, `equipe_pari`) VALUES
-(28, 'Lille ', 'Reims', 1.64, 3.5, 6, 20, 7, 3.5, 'nul');
+(28, 'Lille ', 'Reims', 1.64, 3.5, 6, 20, 7, 3.5, 'nul'),
+(29, 'Lille ', 'Reims', 1.64, 3.5, 6, 50, 7, 3.5, 'nul'),
+(30, 'Lille ', 'Reims', 1.64, 3.5, 6, 40, 7, 3.5, 'nul'),
+(31, 'Lille ', 'Reims', 1.64, 3.5, 6, 40, 7, 3.5, 'nul');
 
 -- --------------------------------------------------------
 
@@ -103,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `resultat` (
   `coteext` double NOT NULL,
   `logo_res` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Contenu de la table `resultat`
@@ -140,12 +143,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `nom`, `prenom`, `password`, `pseudo`, `points`, `admin`) VALUES
 (1, 'Ca marche pas', 'jules', 'mdp', 'julio', 999999886.8, 11),
-(2, 'maurie', 'olivier', 'bite', 'olive', 0, NULL),
-(3, 'maurie', 'olivier', 'bite', 'olive', 100, NULL),
-(4, 'charbonnier', 'Louis', 'roux', 'anibal', 80, NULL),
 (5, 'basse', 'jules', 'mdp', 'bito', 45, NULL),
-(6, 'basse', 'jules', 'mdp', 'rabit', 98, NULL),
-(7, 'oli', 'oli', 'oli', 'oli', 447.7, NULL);
+(7, 'oli', 'oli', 'oli', 'oli', 317.7, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

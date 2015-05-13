@@ -1,13 +1,15 @@
-<?php include('../includes/connexion_bdd.php');
-require_once "../includes/autoload.inc.php"; 
-session_start();?>
+<?php
+include('../includes/connexion_bdd.php');
+require_once('../includes/autoload.inc.php'); 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Projet foot | Accueil</title>
+    <title>Resultat Ligue 1 | Accueil</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="../css/design.css" rel="stylesheet"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

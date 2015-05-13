@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Projet foot | Mon compte</title>
+    <title>Projet foot | Administration</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="../css/design.css" rel="stylesheet"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -20,19 +20,19 @@
 </head>
 <body>
 	<div class="container">
-<!-- navigation -->
-		<div class="col-lg-2">
-			<nav class="nav-bar navbar-inverse">
-				<ul class="nav navbar-nav navbar-inverse">
-					<li><a href="pageadmin.php" class="navbar-link">Résultat des matchs</a></li>
-					<li><a href="ajoutadmin.php" class="navbar-link">Ajouter des matchs</a></li>
-					<li><a href="listeuser.php" class="navbar-link">Liste des utilistauers</a></li>
-				</ul>
-			</nav>
-		</div>
-
-<!-- conteneur -->	
-		<div class="col-lg-8 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">
+		<div class="row">
+			<div class="col-md-3 col-sm-3 col-xs-3">
+				<nav class="nav-bar navbar-inverse">
+					<ul class="nav navbar-nav navbar-inverse">
+						<li><a href="pageadmin.php" class="navbar-link">Résultat des matchs</a></li>
+						<li><a href="ajoutadmin.php" class="navbar-link">Ajouter des matchs</a></li>
+						<li><a href="listeuser.php" class="navbar-link">Liste des utilisateurs</a></li>
+						<li><a href="../includes/logout.php" class="navbar-link">Déconnexion</a></li>
+					</ul>
+				</nav>
+			</div>
+	
+			<div class="col-md-9 col-sm-9 col-xs-9">
 			<h1>Résultat des Matchs</h1>
 		<?php
 			/* affiche les résultats de la requête */
@@ -46,13 +46,23 @@
 			while ($resultat2 = $sql->fetch())
 			{
 				$nul = "nul";
-				?>
+				$logodomsql = "SELECT logo FROM equipe WHERE nom = '".$resultat2["dom"]."'";
+				$logodomexe = $db->prepare($logodomsql);
+				$logodomexe->execute();
+				$logodom = $logodomexe->fetch();
+				$logoextsql = "SELECT logo FROM equipe WHERE nom = '".$resultat2["ext"]."'";
+				$logoextexe = $db->prepare($logoextsql);
+				$logoextexe->execute();
+				$logoext = $logoextexe->fetch();
+		?>
 				<div class="row resultat-admin">
-					<div class="col-lg-5">
-						<h3><?php echo $resultat2['dom']; ?>  -  <?php echo $resultat2['ext'];?> </h3>
+					<div class="col-md-6 col-sm-6 col-xs-7">
+						<img src="..<?php echo $logodom["logo"];?>" alt="image <?php echo $logodom["logo"];?>" />
+						<?php echo $resultat2['dom']; ?>  -  <?php echo $resultat2['ext'];?>
+						<img src="..<?php echo $logoext["logo"];?>" alt="image <?php echo $logoext["logo"];?>"/>
 					</div>
 					<form method="POST" action="" class="parie">
-						<div class="col-lg-5">
+						<div class="col-md-4 col-sm-4 col-xs-3">
 							<ul>
 								<li>
 									<span class="equipe"><?php echo substr($resultat2['dom'], 0, 3); ?></span>
@@ -74,48 +84,49 @@
 								</li>
 							</ul>
 						</div>
-						<div class="col-lg-2">
-							<input type="submit" class="btn btn-primary" name="envoyer" value="VALIDER!">
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<input type="submit" class="btn btn-primary valid_result" name="envoyer" value="VALIDER">
 						</div>
 					</form>
 				</div>
 
-			<?php
-			}
-				/* récupère les données de la bdd */
-				if(!empty($_POST["envoyer"]))
-				{
-					$json = $_POST["cote"];
-					$lol = json_decode($json);
-					$match= $lol[0];
-					$equipe_dom = $lol[1];
-					echo $match;
-					$req_pari2 = "SELECT id, dom, ext, cotedom, cotenul, coteext, sommeparie, id_user, coteparie, equipe_pari FROM pari WHERE equipe_pari = '".$match."' AND dom = '".$equipe_dom."'";
-					$req_pari=$db->prepare($req_pari2);
-					$req_pari->execute();
-					
-					while($gain = $req_pari->fetch())
-					{
-						$user_id = $gain["id_user"];
-						$req_user = $db->prepare("SELECT id, nom, prenom, password, pseudo, points, admin FROM user WHERE id = '".$user_id."'");
-						$req_user->execute();
-						while($columns = $req_user->fetch())
-						{
-							$useract = new user($columns["id"], $columns["nom"], $columns["prenom"], $columns["password"], $columns["pseudo"], $columns["points"]);
-							$useract->victoire($gain["coteparie"], $gain["sommeparie"]);
-							$delete2 = "DELETE FROM pari WHERE id = :id";
-							$params = array(
-								'id' => $gain["id"]
-							);
-							$delete = $db->prepare($delete2);
-							$delete->execute($params);	
-						}
-					}
-					$sql = "DELETE FROM resultat WHERE dom = '".$equipe_dom."'";
-					$sql2 = $db->prepare($sql);
-					$sql2->execute();
+				<?php
 				}
-			?>
+					/* récupère les données de la bdd */
+					if(!empty($_POST["envoyer"]))
+					{
+						$json = $_POST["cote"];
+						$lol = json_decode($json);
+						$match= $lol[0];
+						$equipe_dom = $lol[1];
+						echo $match;
+						$req_pari2 = "SELECT id, dom, ext, cotedom, cotenul, coteext, sommeparie, id_user, coteparie, equipe_pari FROM pari WHERE equipe_pari = '".$match."' AND dom = '".$equipe_dom."'";
+						$req_pari=$db->prepare($req_pari2);
+						$req_pari->execute();
+						
+						while($gain = $req_pari->fetch())
+						{
+							$user_id = $gain["id_user"];
+							$req_user = $db->prepare("SELECT id, nom, prenom, password, pseudo, points, admin FROM user WHERE id = '".$user_id."'");
+							$req_user->execute();
+							while($columns = $req_user->fetch())
+							{
+								$useract = new user($columns["id"], $columns["nom"], $columns["prenom"], $columns["password"], $columns["pseudo"], $columns["points"]);
+								$useract->victoire($gain["coteparie"], $gain["sommeparie"]);
+								$delete2 = "DELETE FROM pari WHERE id = :id";
+								$params = array(
+									'id' => $gain["id"]
+								);
+								$delete = $db->prepare($delete2);
+								$delete->execute($params);	
+							}
+						}
+						$sql = "DELETE FROM resultat WHERE dom = '".$equipe_dom."'";
+						$sql2 = $db->prepare($sql);
+						$sql2->execute();
+					}
+				?>
+			</div>
 		</div>
 	</div>
 </body>
